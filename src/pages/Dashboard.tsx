@@ -1,10 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Plus, Image, LogOut } from 'lucide-react';
+import { useAuth } from '../context/AuthContext';
 
 const Dashboard = () => {
-  const userName = "John Doe";
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const designCount = 0;
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
 
   return (
     <div className="min-h-screen bg-gray-50">
@@ -14,9 +21,13 @@ const Dashboard = () => {
           ✨ AI Designer
         </div>
         <div className="flex items-center gap-4">
-          <span className="text-gray-700">Hi, {userName}!</span>
-          <button className="text-gray-600 hover:text-gray-900">
+          <span className="text-gray-700">Hi, {user?.name || 'User'}!</span>
+          <button 
+            onClick={handleLogout}
+            className="text-gray-600 hover:text-gray-900 flex items-center gap-2"
+          >
             <LogOut size={20} />
+            Logout
           </button>
         </div>
       </nav>
