@@ -1,21 +1,14 @@
 # Dependencies
 node_modules/
-.pnp
-.pnp.js
-
-# Testing
-coverage/
-
-# Production
-build/
-dist/
 
 # Environment variables
 .env
-.env.*
-!.env.example
+.env.local
+.env.development
+.env.production
 
 # Logs
+logs
 *.log
 npm-debug.log*
 
@@ -27,3 +20,4 @@ Thumbs.db
 .vscode/
 .idea/
 *.swp
+*.swo
