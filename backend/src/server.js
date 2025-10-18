@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
+const brandRoutes = require('./routes/brandRoutes');
 
 // Import routes
 const authRouter = require('./routes/authRouters');
@@ -39,6 +40,7 @@ app.get('/api/health', (req, res) => {
 
 // Auth routes
 app.use('/api/auth', authRouter);
+app.use('/api/brands', brandRoutes);
 
 // 404 handler
 app.use((req, res) => {
@@ -48,18 +50,20 @@ app.use((req, res) => {
   });
 });
 
+
+
 // Start server
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
   console.log('');
-  console.log('🚀 ========================================');
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-  console.log(`📝 Environment: ${process.env.NODE_ENV}`);
-  console.log('🚀 ========================================');
+  console.log('========================================');
+  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Environment: ${process.env.NODE_ENV}`);
+  console.log('========================================');
   console.log('');
-  console.log('📍 Available endpoints:');
-  console.log('   POST   /api/auth/register');
-  console.log('   POST   /api/auth/login');
-  console.log('   GET    /api/auth/me (protected)');
+  console.log('Available endpoints:');
+  console.log('POST   /api/auth/register');
+  console.log('POST   /api/auth/login');
+  console.log('GET    /api/auth/me (protected)');
   console.log('');
 });

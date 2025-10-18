@@ -1,12 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Plus, Image, LogOut } from 'lucide-react';
+import { Plus, Image, LogOut, Palette } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
+import { getBrandKit } from '../services/brandService';
 
 const Dashboard = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const designCount = 0;
+  
+  // Brand kit state
+  const [brandKit, setBrandKit] = useState<any>(null);
+  const [loadingBrand, setLoadingBrand] = useState(true);
+
+  // Fetch brand kit on mount
+  useEffect(() => {
+    const fetchBrandKit = async () => {
+      try {
+        const kit = await getBrandKit();
+        setBrandKit(kit);
+      } catch (error) {
+        console.error('Error fetching brand kit:', error);
+      } finally {
+        setLoadingBrand(false);
+      }
+    };
+
+    fetchBrandKit();
+  }, []);
 
   const handleLogout = () => {
     logout();
@@ -43,6 +64,67 @@ const Dashboard = () => {
           </p>
         </div>
 
+        {/* Brand Kit Display */}
+        {!loadingBrand && brandKit && (
+          <div className="bg-white rounded-xl p-6 mb-8 border-2 border-green-200">
+            <div className="flex items-center justify-between mb-4">
+              <h2 className="text-xl font-bold text-gray-900 flex items-center gap-2">
+                <Palette className="text-green-600" />
+                Your Brand Kit
+              </h2>
+              <Link 
+                to="/brand-setup"
+                className="text-indigo-600 hover:text-indigo-700 text-sm font-medium"
+              >
+                Edit
+              </Link>
+            </div>
+
+            <div className="flex items-center gap-8">
+              {/* Logo */}
+              <div>
+                <p className="text-sm text-gray-600 mb-2">Logo</p>
+                <img 
+                  src={brandKit.logo_url} 
+                  alt="Brand logo" 
+                  className="h-20 w-auto object-contain border-2 border-gray-200 rounded-lg p-2"
+                />
+              </div>
+
+              {/* Colors */}
+              <div className="flex-1">
+                <p className="text-sm text-gray-600 mb-2">Brand Colors</p>
+                <div className="flex gap-4">
+                  <div className="text-center">
+                    <div 
+                      className="w-16 h-16 rounded-lg border-2 border-gray-200 mb-1"
+                      style={{ backgroundColor: brandKit.primary_color }}
+                    />
+                    <p className="text-xs text-gray-600">Primary</p>
+                    <p className="text-xs font-mono">{brandKit.primary_color}</p>
+                  </div>
+                  <div className="text-center">
+                    <div 
+                      className="w-16 h-16 rounded-lg border-2 border-gray-200 mb-1"
+                      style={{ backgroundColor: brandKit.secondary_color }}
+                    />
+                    <p className="text-xs text-gray-600">Secondary</p>
+                    <p className="text-xs font-mono">{brandKit.secondary_color}</p>
+                  </div>
+                  <div className="text-center">
+                    <div 
+                      className="w-16 h-16 rounded-lg border-2 border-gray-200 mb-1"
+                      style={{ backgroundColor: brandKit.accent_color }}
+                    />
+                    <p className="text-xs text-gray-600">Accent</p>
+                    <p className="text-xs font-mono">{brandKit.accent_color}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Quick Actions */}
         <div className="grid md:grid-cols-2 gap-6 mb-12">
           <Link 
@@ -61,8 +143,12 @@ const Dashboard = () => {
             className="bg-white border-2 border-indigo-600 text-indigo-600 p-8 rounded-xl hover:bg-indigo-50 flex items-center justify-between"
           >
             <div>
-              <h3 className="text-2xl font-bold mb-2">Setup Brand Kit</h3>
-              <p>Upload your logo and colors</p>
+              <h3 className="text-2xl font-bold mb-2">
+                {brandKit ? 'Update Brand Kit' : 'Setup Brand Kit'}
+              </h3>
+              <p>
+                {brandKit ? 'Edit your logo and colors' : 'Upload your logo and colors'}
+              </p>
             </div>
             <Image size={48} />
           </Link>
