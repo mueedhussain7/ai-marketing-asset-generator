@@ -8,6 +8,8 @@ import Dashboard from './pages/Dashboard';
 import BrandSetup from './pages/BrandSetup';
 import TemplateGallery from './pages/TemplateGallery';
 import CreateDesign from './pages/CreateDesign';
+import MyDesigns from './pages/MyDesigns';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
           <Route path="/templates" element={<TemplateGallery />} />
           <Route path="/create" element={<TemplateGallery />} />
           <Route path="/create/:templateId" element={<CreateDesign />} />
+          <Route path="/my-designs" element={<PrivateRoute><MyDesigns /></PrivateRoute>} />
         </Routes>
       </Router>
     </AuthProvider>

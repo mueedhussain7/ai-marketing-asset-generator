@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Plus, Image, LogOut, Palette } from 'lucide-react';
+import { Plus, Image, LogOut, Palette, FolderOpen } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { getBrandKit } from '../services/brandService';
 
 const Dashboard = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
-  const designCount = 0;
 
   // Brand kit state
   const [brandKit, setBrandKit] = useState<any>(null);
@@ -125,59 +124,56 @@ const Dashboard = () => {
           </div>
         )}
 
-        {/* Quick Actions */}
-        <div className="grid md:grid-cols-2 gap-6 mb-12">
+        {/* Quick Actions - NOW 3 CARDS */}
+        <div className="grid md:grid-cols-3 gap-6 mb-12">
           <Link
             to="/templates"
-            className="bg-indigo-600 text-white p-8 rounded-xl hover:bg-indigo-700 flex items-center justify-between"
+            className="bg-indigo-600 text-white p-8 rounded-xl hover:bg-indigo-700 flex flex-col items-center justify-center text-center"
           >
-            <div>
-              <h3 className="text-2xl font-bold mb-2">Create New Design</h3>
-              <p>Start with a template and customize it</p>
-            </div>
-            <Plus size={48} />
+            <Plus size={48} className="mb-4" />
+            <h3 className="text-xl font-bold mb-2">Create New Design</h3>
+            <p className="text-sm">Start with a template</p>
+          </Link>
+
+          <Link
+            to="/my-designs"
+            className="bg-green-600 text-white p-8 rounded-xl hover:bg-green-700 flex flex-col items-center justify-center text-center"
+          >
+            <FolderOpen size={48} className="mb-4" />
+            <h3 className="text-xl font-bold mb-2">My Designs</h3>
+            <p className="text-sm">View saved designs</p>
           </Link>
 
           <Link
             to="/brand-setup"
-            className="bg-white border-2 border-indigo-600 text-indigo-600 p-8 rounded-xl hover:bg-indigo-50 flex items-center justify-between"
+            className="bg-white border-2 border-indigo-600 text-indigo-600 p-8 rounded-xl hover:bg-indigo-50 flex flex-col items-center justify-center text-center"
           >
-            <div>
-              <h3 className="text-2xl font-bold mb-2">
-                {brandKit ? 'Update Brand Kit' : 'Setup Brand Kit'}
-              </h3>
-              <p>
-                {brandKit ? 'Edit your logo and colors' : 'Upload your logo and colors'}
-              </p>
-            </div>
-            <Image size={48} />
+            <Image size={48} className="mb-4" />
+            <h3 className="text-xl font-bold mb-2">
+              {brandKit ? 'Update Brand Kit' : 'Setup Brand Kit'}
+            </h3>
+            <p className="text-sm">
+              {brandKit ? 'Edit your brand' : 'Upload logo & colors'}
+            </p>
           </Link>
         </div>
 
-        {/* Recent Designs Section */}
-        <div>
-          <h2 className="text-2xl font-bold mb-6">Recent Designs</h2>
-
-          {designCount === 0 ? (
-            <div className="bg-white rounded-xl p-12 text-center">
-              <div className="text-gray-400 mb-4">
-                <Image size={64} className="mx-auto" />
-              </div>
-              <p className="text-gray-600 mb-4">
-                You haven't created any designs yet
-              </p>
-              <Link
-                to="/templates"
-                className="inline-block bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700"
-              >
-                Create Your First Design
-              </Link>
-            </div>
-          ) : (
-            <div className="grid md:grid-cols-3 gap-6">
-              {/* Designs will appear here later */}
-            </div>
-          )}
+        {/* Recent Designs Info */}
+        <div className="bg-white rounded-xl p-8 text-center">
+          <FolderOpen size={48} className="mx-auto text-gray-400 mb-4" />
+          <h2 className="text-2xl font-bold text-gray-900 mb-2">
+            Your Saved Designs
+          </h2>
+          <p className="text-gray-600 mb-6">
+            Click "My Designs" above to view, download, and manage all your saved designs
+          </p>
+          <Link
+            to="/my-designs"
+            className="inline-flex items-center gap-2 bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700"
+          >
+            <FolderOpen size={20} />
+            View My Designs
+          </Link>
         </div>
       </div>
     </div>
