@@ -7,6 +7,7 @@ import SignupPage from './pages/SignupPage';
 import Dashboard from './pages/Dashboard';
 import BrandSetup from './pages/BrandSetup';
 import TemplateGallery from './pages/TemplateGallery';
+import CreateDesign from './pages/CreateDesign';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/brand-setup" element={<BrandSetup />} />
           <Route path="/templates" element={<TemplateGallery />} />
           <Route path="/create" element={<TemplateGallery />} />
+          <Route path="/create/:templateId" element={<CreateDesign />} />
         </Routes>
       </Router>
     </AuthProvider>
