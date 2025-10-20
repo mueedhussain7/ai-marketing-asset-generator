@@ -1,0 +1,242 @@
+[
+  {
+    "id": "social-media-1",
+    "name": "Bold Announcement",
+    "category": "Social Media",
+    "dimensions": {
+      "width": 1080,
+      "height": 1080
+    },
+    "thumbnail": "https://placehold.co/300x300/4F46E5/white?text=Bold+Announcement",
+    "description": "Eye-catching social media post for announcements",
+    "elements": [
+      {
+        "type": "background",
+        "color": "primary"
+      },
+      {
+        "type": "text",
+        "name": "headline",
+        "content": "Your Headline Here",
+        "position": { "x": 50, "y": 400 },
+        "style": {
+          "fontSize": 72,
+          "fontWeight": "bold",
+          "color": "#FFFFFF",
+          "textAlign": "center",
+          "maxWidth": 900
+        }
+      },
+      {
+        "type": "text",
+        "name": "description",
+        "content": "Add your description text here",
+        "position": { "x": 50, "y": 600 },
+        "style": {
+          "fontSize": 32,
+          "color": "#FFFFFF",
+          "textAlign": "center",
+          "maxWidth": 900
+        }
+      },
+      {
+        "type": "logo",
+        "position": { "x": 450, "y": 100 },
+        "size": { "width": 150, "height": 150 }
+      }
+    ]
+  },
+  {
+    "id": "social-media-2",
+    "name": "Minimalist Quote",
+    "category": "Social Media",
+    "dimensions": {
+      "width": 1080,
+      "height": 1080
+    },
+    "thumbnail": "https://placehold.co/300x300/EC4899/white?text=Minimalist+Quote",
+    "description": "Clean design perfect for quotes and testimonials",
+    "elements": [
+      {
+        "type": "background",
+        "color": "#FFFFFF"
+      },
+      {
+        "type": "shape",
+        "shape": "rectangle",
+        "position": { "x": 0, "y": 0 },
+        "size": { "width": 1080, "height": 200 },
+        "color": "primary"
+      },
+      {
+        "type": "text",
+        "name": "headline",
+        "content": "Your Quote Here",
+        "position": { "x": 100, "y": 350 },
+        "style": {
+          "fontSize": 56,
+          "fontWeight": "600",
+          "color": "primary",
+          "textAlign": "left",
+          "maxWidth": 880
+        }
+      },
+      {
+        "type": "text",
+        "name": "description",
+        "content": "— Author Name",
+        "position": { "x": 100, "y": 650 },
+        "style": {
+          "fontSize": 28,
+          "color": "secondary",
+          "textAlign": "left"
+        }
+      }
+    ]
+  },
+  {
+    "id": "instagram-ad-1",
+    "name": "Product Showcase",
+    "category": "Ads",
+    "dimensions": {
+      "width": 1080,
+      "height": 1350
+    },
+    "thumbnail": "https://placehold.co/300x300/10B981/white?text=Product+Showcase",
+    "description": "Instagram ad template for product launches",
+    "elements": [
+      {
+        "type": "background",
+        "color": "accent"
+      },
+      {
+        "type": "image",
+        "name": "productImage",
+        "position": { "x": 140, "y": 200 },
+        "size": { "width": 800, "height": 600 }
+      },
+      {
+        "type": "text",
+        "name": "headline",
+        "content": "New Product Alert!",
+        "position": { "x": 50, "y": 900 },
+        "style": {
+          "fontSize": 64,
+          "fontWeight": "bold",
+          "color": "#FFFFFF",
+          "textAlign": "center",
+          "maxWidth": 980
+        }
+      },
+      {
+        "type": "text",
+        "name": "description",
+        "content": "Shop now and save 20%",
+        "position": { "x": 50, "y": 1050 },
+        "style": {
+          "fontSize": 36,
+          "color": "#FFFFFF",
+          "textAlign": "center",
+          "maxWidth": 980
+        }
+      }
+    ]
+  },
+  {
+    "id": "flyer-1",
+    "name": "Event Flyer",
+    "category": "Flyers",
+    "dimensions": {
+      "width": 816,
+      "height": 1056
+    },
+    "thumbnail": "https://placehold.co/300x300/F59E0B/white?text=Event+Flyer",
+    "description": "Professional event flyer template",
+    "elements": [
+      {
+        "type": "background",
+        "color": "#FFFFFF"
+      },
+      {
+        "type": "shape",
+        "shape": "rectangle",
+        "position": { "x": 0, "y": 0 },
+        "size": { "width": 816, "height": 300 },
+        "color": "primary"
+      },
+      {
+        "type": "text",
+        "name": "headline",
+        "content": "Event Name",
+        "position": { "x": 50, "y": 100 },
+        "style": {
+          "fontSize": 68,
+          "fontWeight": "bold",
+          "color": "#FFFFFF",
+          "textAlign": "center",
+          "maxWidth": 716
+        }
+      },
+      {
+        "type": "text",
+        "name": "description",
+        "content": "Join us for an amazing experience. Date & location details here.",
+        "position": { "x": 50, "y": 400 },
+        "style": {
+          "fontSize": 32,
+          "color": "#333333",
+          "textAlign": "center",
+          "maxWidth": 716,
+          "lineHeight": 1.6
+        }
+      },
+      {
+        "type": "logo",
+        "position": { "x": 333, "y": 850 },
+        "size": { "width": 150, "height": 150 }
+      }
+    ]
+  },
+  {
+    "id": "banner-1",
+    "name": "Website Banner",
+    "category": "Banners",
+    "dimensions": {
+      "width": 1920,
+      "height": 600
+    },
+    "thumbnail": "https://placehold.co/150x125/6366F1/white?text=Website+Banner",
+    "description": "Hero banner for websites",
+    "elements": [
+      {
+        "type": "background",
+        "color": "primary"
+      },
+      {
+        "type": "text",
+        "name": "headline",
+        "content": "Welcome to Our Site",
+        "position": { "x": 100, "y": 180 },
+        "style": {
+          "fontSize": 96,
+          "fontWeight": "bold",
+          "color": "#FFFFFF",
+          "textAlign": "left",
+          "maxWidth": 1200
+        }
+      },
+      {
+        "type": "text",
+        "name": "description",
+        "content": "Your tagline or description goes here",
+        "position": { "x": 100, "y": 350 },
+        "style": {
+          "fontSize": 42,
+          "color": "#FFFFFF",
+          "textAlign": "left",
+          "maxWidth": 1200
+        }
+      }
+    ]
+  }
+]

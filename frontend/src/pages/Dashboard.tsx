@@ -8,7 +8,7 @@ const Dashboard = () => {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const designCount = 0;
-  
+
   // Brand kit state
   const [brandKit, setBrandKit] = useState<any>(null);
   const [loadingBrand, setLoadingBrand] = useState(true);
@@ -43,7 +43,7 @@ const Dashboard = () => {
         </div>
         <div className="flex items-center gap-4">
           <span className="text-gray-700">Hi, {user?.name || 'User'}!</span>
-          <button 
+          <button
             onClick={handleLogout}
             className="text-gray-600 hover:text-gray-900 flex items-center gap-2"
           >
@@ -72,7 +72,7 @@ const Dashboard = () => {
                 <Palette className="text-green-600" />
                 Your Brand Kit
               </h2>
-              <Link 
+              <Link
                 to="/brand-setup"
                 className="text-indigo-600 hover:text-indigo-700 text-sm font-medium"
               >
@@ -84,9 +84,9 @@ const Dashboard = () => {
               {/* Logo */}
               <div>
                 <p className="text-sm text-gray-600 mb-2">Logo</p>
-                <img 
-                  src={brandKit.logo_url} 
-                  alt="Brand logo" 
+                <img
+                  src={brandKit.logo_url}
+                  alt="Brand logo"
                   className="h-20 w-auto object-contain border-2 border-gray-200 rounded-lg p-2"
                 />
               </div>
@@ -96,7 +96,7 @@ const Dashboard = () => {
                 <p className="text-sm text-gray-600 mb-2">Brand Colors</p>
                 <div className="flex gap-4">
                   <div className="text-center">
-                    <div 
+                    <div
                       className="w-16 h-16 rounded-lg border-2 border-gray-200 mb-1"
                       style={{ backgroundColor: brandKit.primary_color }}
                     />
@@ -104,7 +104,7 @@ const Dashboard = () => {
                     <p className="text-xs font-mono">{brandKit.primary_color}</p>
                   </div>
                   <div className="text-center">
-                    <div 
+                    <div
                       className="w-16 h-16 rounded-lg border-2 border-gray-200 mb-1"
                       style={{ backgroundColor: brandKit.secondary_color }}
                     />
@@ -112,7 +112,7 @@ const Dashboard = () => {
                     <p className="text-xs font-mono">{brandKit.secondary_color}</p>
                   </div>
                   <div className="text-center">
-                    <div 
+                    <div
                       className="w-16 h-16 rounded-lg border-2 border-gray-200 mb-1"
                       style={{ backgroundColor: brandKit.accent_color }}
                     />
@@ -127,8 +127,8 @@ const Dashboard = () => {
 
         {/* Quick Actions */}
         <div className="grid md:grid-cols-2 gap-6 mb-12">
-          <Link 
-            to="/create"
+          <Link
+            to="/templates"
             className="bg-indigo-600 text-white p-8 rounded-xl hover:bg-indigo-700 flex items-center justify-between"
           >
             <div>
@@ -138,7 +138,7 @@ const Dashboard = () => {
             <Plus size={48} />
           </Link>
 
-          <Link 
+          <Link
             to="/brand-setup"
             className="bg-white border-2 border-indigo-600 text-indigo-600 p-8 rounded-xl hover:bg-indigo-50 flex items-center justify-between"
           >
@@ -157,7 +157,7 @@ const Dashboard = () => {
         {/* Recent Designs Section */}
         <div>
           <h2 className="text-2xl font-bold mb-6">Recent Designs</h2>
-          
+
           {designCount === 0 ? (
             <div className="bg-white rounded-xl p-12 text-center">
               <div className="text-gray-400 mb-4">
@@ -166,8 +166,8 @@ const Dashboard = () => {
               <p className="text-gray-600 mb-4">
                 You haven't created any designs yet
               </p>
-              <Link 
-                to="/create"
+              <Link
+                to="/templates"
                 className="inline-block bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700"
               >
                 Create Your First Design

@@ -1,10 +1,12 @@
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const brandRoutes = require('./routes/brandRoutes');
+
 
 // Import routes
+const brandRoutes = require('./routes/brandRoutes');
 const authRouter = require('./routes/authRouters');
+const templateRoutes = require('./routes/templateRoutes');
 
 
 // Initialize app
@@ -41,6 +43,7 @@ app.get('/api/health', (req, res) => {
 // Auth routes
 app.use('/api/auth', authRouter);
 app.use('/api/brands', brandRoutes);
+app.use('/api/templates', templateRoutes);
 
 // 404 handler
 app.use((req, res) => {
