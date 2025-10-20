@@ -7,6 +7,7 @@ const cors = require('cors');
 const brandRoutes = require('./routes/brandRoutes');
 const authRouter = require('./routes/authRouters');
 const templateRoutes = require('./routes/templateRoutes');
+const designRoutes = require('./routes/designRouters');
 
 
 // Initialize app
@@ -44,6 +45,7 @@ app.get('/api/health', (req, res) => {
 app.use('/api/auth', authRouter);
 app.use('/api/brands', brandRoutes);
 app.use('/api/templates', templateRoutes);
+app.use('/api/designs', designRoutes);
 
 // 404 handler
 app.use((req, res) => {
