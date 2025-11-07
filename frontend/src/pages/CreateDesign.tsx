@@ -294,7 +294,7 @@ const handleDownload = async () => {
                 div.style.left = `${element.position.x}px`;
                 div.style.top = `${element.position.y}px`;
                 
-                // IMPORTANT: No maxHeight, no WebkitLineClamp for download!
+            
                 if (element.style.maxWidth) {
                     div.style.width = `${element.style.maxWidth}px`;
                 }

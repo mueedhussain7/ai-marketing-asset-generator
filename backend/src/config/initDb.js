@@ -14,21 +14,21 @@ const createUsersTable = async () => {
 
   try {
     await pool.query(createTableQuery);
-    console.log('✅ Users table created successfully');
+    console.log('Users table created successfully');
   } catch (error) {
-    console.error('❌ Error creating users table:', error.message);
+    console.error('Error creating users table:', error.message);
     throw error;
   }
 };
 
 const initializeDatabase = async () => {
   try {
-    console.log('📦 Initializing database...');
+    console.log('Initializing database...');
     await createUsersTable();
-    console.log('✅ Database initialized successfully!');
+    console.log('Database initialized successfully!');
     process.exit(0);
   } catch (error) {
-    console.error('❌ Database initialization failed:', error);
+    console.error('Database initialization failed:', error);
     process.exit(1);
   }
 };

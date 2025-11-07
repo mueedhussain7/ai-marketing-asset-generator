@@ -124,7 +124,7 @@ const Dashboard = () => {
           </div>
         )}
 
-        {/* Quick Actions - NOW 3 CARDS */}
+        {/* Quick Actions - 3 CARDS */}
         <div className="grid md:grid-cols-3 gap-6 mb-12">
           <Link
             to="/templates"

@@ -8,6 +8,7 @@ const brandRoutes = require('./routes/brandRoutes');
 const authRouter = require('./routes/authRouters');
 const templateRoutes = require('./routes/templateRoutes');
 const designRoutes = require('./routes/designRouters');
+const imageRoutes = require('./routes/imageRoutes');
 
 
 // Initialize app
@@ -46,6 +47,7 @@ app.use('/api/auth', authRouter);
 app.use('/api/brands', brandRoutes);
 app.use('/api/templates', templateRoutes);
 app.use('/api/designs', designRoutes);
+app.use('/api/images', imageRoutes);
 
 // 404 handler
 app.use((req, res) => {
@@ -60,15 +62,8 @@ app.use((req, res) => {
 // Start server
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => {
-  console.log('');
   console.log('========================================');
   console.log(`Server running on http://localhost:${PORT}`);
   console.log(`Environment: ${process.env.NODE_ENV}`);
   console.log('========================================');
-  console.log('');
-  console.log('Available endpoints:');
-  console.log('POST   /api/auth/register');
-  console.log('POST   /api/auth/login');
-  console.log('GET    /api/auth/me (protected)');
-  console.log('');
 });
