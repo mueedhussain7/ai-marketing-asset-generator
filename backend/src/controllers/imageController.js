@@ -1,11 +1,12 @@
 const comfyui = require('../utils/comfyui');
 const s3Uploader = require('../utils/s3Uploader');
+const { pool } = require('../config/database');
 const fs = require('fs');
 const path = require('path');
 
 const generateMarketingAsset = async (req, res) => {
   try {
-    const { prompt, assetType } = req.body;
+    const { prompt, assetType, brandKitId } = req.body; // ALSO gets brand kit ID
 
     if (!prompt) {
       return res.status(400).json({ 
@@ -15,12 +16,35 @@ const generateMarketingAsset = async (req, res) => {
 
     console.log(`\n🎨 Generating ${assetType || 'asset'} with prompt: "${prompt}"\n`);
 
-    const workflow = loadWorkflow(prompt);
+    // If brandKitId provided, fetch brand kit data
+    let enhancedPrompt = prompt;
+    if (brandKitId) {
+      console.log(`🎨 Using brand kit: ${brandKitId}`);
+      
+      const brandResult = await pool.query(
+        'SELECT * FROM brand_kits WHERE id = $1',
+        [brandKitId]
+      );
 
-    const imageInfo = await comfyui.generateImage(prompt, workflow);
+      if (brandResult.rows.length > 0) {
+        const brand = brandResult.rows[0];
+        console.log(`✅ Brand: ${brand.brand_name}`);
+        console.log(`   Colors: ${brand.primary_color}, ${brand.secondary_color}`);
+        console.log(`   Style: ${brand.brand_style}`);
+
+        // Enhance prompt with brand information
+        enhancedPrompt = `${prompt}, using color scheme with primary color ${brand.primary_color}, secondary color ${brand.secondary_color}, style: ${brand.brand_style}, modern professional design`;
+        
+        console.log(`\n📝 Enhanced prompt: "${enhancedPrompt}"\n`);
+      }
+    }
+
+    const workflow = loadWorkflow(enhancedPrompt);
+
+    const imageInfo = await comfyui.generateImage(enhancedPrompt, workflow);
     const imageBuffer = await comfyui.downloadImage(imageInfo);
 
-    const s3Result = await s3Uploader.uploadImage(imageBuffer, prompt);
+    const s3Result = await s3Uploader.uploadImage(imageBuffer, enhancedPrompt);
 
     console.log('🎉 Complete!\n');
 
@@ -29,8 +53,10 @@ const generateMarketingAsset = async (req, res) => {
       message: 'Image generated successfully!',
       data: {
         imageUrl: s3Result.url,
-        prompt: prompt,
+        prompt: enhancedPrompt,
+        originalPrompt: prompt,
         assetType: assetType,
+        brandKitId: brandKitId,
         generatedAt: new Date().toISOString()
       }
     });

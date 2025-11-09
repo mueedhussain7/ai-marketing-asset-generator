@@ -27,7 +27,7 @@ class ComfyUIClient {
 
   async waitForImage(promptId) {
     let attempts = 0;
-    const maxAttempts = 120;
+    const maxAttempts = 3600; // 60 minutes/ 1 Hour
 
     while (attempts < maxAttempts) {
       try {
